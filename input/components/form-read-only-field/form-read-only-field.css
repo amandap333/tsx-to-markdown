@@ -1,0 +1,21 @@
+.bscs-read-only-field::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: hsl(209, 18%, 30%);
+}
+.bscs-read-only-field:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: hsl(209, 18%, 30%);
+  opacity:  1;
+}
+.bscs-read-only-field::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: hsl(209, 18%, 30%);
+  opacity:  1;
+}
+.bscs-read-only-field:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: hsl(209, 18%, 30%);
+}
+.bscs-read-only-field::-ms-input-placeholder { /* Microsoft Edge */
+  color: hsl(209, 18%, 30%);
+}
+
+.bscs-read-only-field::placeholder { /* Most modern browsers support this now. */
+  color: hsl(209, 18%, 30%);
+}

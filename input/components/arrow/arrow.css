@@ -1,0 +1,48 @@
+.arrow {
+  bottom: -5px;
+  height: 13px;
+  left: -10px;
+  margin-top: 2px;
+  position: relative;
+  transform: rotate(45deg);
+  transition: 0.3s ease;
+  width: 13px;
+}
+
+.arrow::before {
+  background-color: hsl(211, 12%, 43%);
+  border-radius: .25rem;
+  content: '';
+  display: inline-block;
+  height: 3px;
+  position: absolute;
+  transition: 0.3s ease;
+  width: 12px;
+}
+
+.arrow::after {
+  background-color: hsl(228, 45%, 45%);
+  border-radius: .25rem;
+  content: '';
+  display: inline-block;
+  height: 3px;
+  left: 5px;
+  position: absolute;
+  top: -5px;
+  transform: rotate(90deg);
+  transition: 0.3s ease;
+  width: 12px;
+}
+
+.arrow.active {
+  transform: rotate(45deg) translate(-5px, -5px);
+}
+
+.arrow.active::before {
+  transform: translate(10px, 0);
+}
+
+.arrow.active::after {
+  transform: rotate(90deg) translate(10px, 0);
+}
+
