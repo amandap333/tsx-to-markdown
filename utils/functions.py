@@ -122,7 +122,7 @@ def create_readme(required, optional, file):
 
     name_of_component = __strip_extra_characters(file)
 
-    mdFile = MdUtils(file_name=f'{name_of_component}',title=f'##{name_of_component}')
+    mdFile = MdUtils(file_name=f'./output/{name_of_component}',title=f'##{name_of_component}')
     mdFile.write("## Props\n")
     mdFile.write(f"\n\n### Required:")
     for props in required_props:
@@ -140,5 +140,6 @@ def create_output_dir(output):
     p.mkdir(exist_ok=True)
     print("Output directory has been created")
 
-def move_to_output():
-    shutil.move('README.md', './output')
+
+def move_to_output(file):
+    shutil.move('SelectCard.md', './output')
