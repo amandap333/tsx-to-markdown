@@ -114,6 +114,14 @@ def __format_optional_props(optional_dict):
     return optional_dict
 
 
+def create_output_dir(output):
+    if isdir('./output'):
+        rmtree('./output')
+
+    mkdir('./output')
+    print("Output directory has been created")
+
+
 def create_readme(required, optional, file):
     required_props = __format_required_props(required)
 
@@ -129,14 +137,5 @@ def create_readme(required, optional, file):
     mdFile.write(f"\n\n### Optional:")
     for props in optional_props:
         mdFile.write(f"\n - {props['name']}:{props['type']}")
-    mdFile.create_md_file()
 
     return mdFile
-
-# def setup_output_dir():
-#     root_dir= dirname(abspath(__file__))
-#     output_dir = f'{root_dir}/output'
-#     if isdir('./output'):
-#         rmtree('./output')
-
-#     mkdir('./output', 0o700)

@@ -1,4 +1,3 @@
-from os.path import dirname, abspath
 from utils.functions import *
 
 
@@ -10,7 +9,7 @@ def tsx_markdown(path):
     tsx_files = list(filter(lambda x: 'stories' not in x, raw_tsx_files))
 
     # 2. selecting one file from tsx_files
-    tsx_file_content = read_tsx_file(tsx_files[4])
+    tsx_file_content = read_tsx_file(tsx_files[3])
 
     # 3. Retrieve all variables from component
     tsx_variable_block = get_all_props(tsx_file_content)
@@ -27,11 +26,11 @@ def tsx_markdown(path):
     # 7. Seperate into of dictionaries of all required props
     required_props = get_required_props_dict(props_list)
 
-    # 8. Create readme markdown file
+    # 9. Create readme markdown file
     create_readme(required_props, optional_props, tsx_file_content)
 
-    # 9. create output directory
-
+    # 10. Createt output directory if doesn't exsist already
+    # create_output_dir(create_output_dir)
 
 
 if __name__ == "__main__":
