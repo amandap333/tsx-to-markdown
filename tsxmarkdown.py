@@ -8,9 +8,10 @@ def tsx_markdown(path):
     # 1. Read TSX files and append content to a list.
     raw_tsx_files = get_files(path, input_file_type)
     tsx_files = list(filter(lambda x: 'stories' not in x, raw_tsx_files))
+    # print(tsx_files)
 
     # 2. selecting one file from tsx_files
-    tsx_file_content = read_tsx_file(tsx_files[4])
+    tsx_file_content = read_tsx_file(tsx_files[22])
 
     # 3. Retrieve all variables from component
     tsx_variable_block = get_all_props(tsx_file_content)
@@ -30,9 +31,10 @@ def tsx_markdown(path):
     # 8. Create readme markdown file
     create_readme(required_props, optional_props, tsx_file_content)
 
-    # 9. create output directory
+    # 9. Createt output directory if doesn't exsist already
+    create_output_dir(create_output_dir)
 
-
+    move_to_output()
 
 if __name__ == "__main__":
     tsx_markdown('./input')

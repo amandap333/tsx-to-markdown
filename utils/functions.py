@@ -1,12 +1,13 @@
 import glob
 import re
 import json
+import shutil
 
 
 from os.path import isdir, isfile
 from mdutils.mdutils import MdUtils
-from shutil import rmtree
 from os import mkdir
+from pathlib import Path
 
 
 def get_files(path, file_type):
@@ -15,7 +16,7 @@ def get_files(path, file_type):
 
 def read_tsx_file(tsx_file_path):
     with open(tsx_file_path, 'r') as f:
-        return f.read() # converts document to string
+        return f.read()
 
 
 def get_all_props(tsx_file_content):
@@ -25,7 +26,7 @@ def get_all_props(tsx_file_content):
 
 
 def __get_props(props_block):
-    m = re.search(r'\{\s(.+?)\s\}', props_block)
+    m = re.search(r'\{\s(.+?)\s\}', props_block, flags=re.DOTALL)
 
     if not m:
         return None
@@ -133,10 +134,11 @@ def create_readme(required, optional, file):
 
     return mdFile
 
-# def setup_output_dir():
-#     root_dir= dirname(abspath(__file__))
-#     output_dir = f'{root_dir}/output'
-#     if isdir('./output'):
-#         rmtree('./output')
 
-#     mkdir('./output', 0o700)
+def create_output_dir(output):
+    p = Path('./output')
+    p.mkdir(exist_ok=True)
+    print("Output directory has been created")
+
+def move_to_output():
+    shutil.move('README.md', './output')

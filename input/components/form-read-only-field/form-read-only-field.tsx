@@ -5,7 +5,7 @@ import { formatClassList } from '@bscs-dev-team/bscs-design-system-common'
 import './form-read-only-field.css'
 
 
-export type FormReadOnlyFieldPropTypes = {
+export type FormReadOnlyFieldProps = {
   label: string,
   name: string,
   placeholder: string,
