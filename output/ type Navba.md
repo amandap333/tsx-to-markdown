@@ -1,6 +1,6 @@
 
-##xport type Navba
-==================
+## type Navba
+=============
 ## Props
 
 

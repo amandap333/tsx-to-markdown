@@ -1,6 +1,6 @@
 
-## PillBadg
-===========
+## Toast
+========
 ## Props
 
 
@@ -9,5 +9,7 @@
 
 ### Optional:
  - className:string
- - color:Color
+ - color:MeaningfulColor
+ - dismissAfter:number
+ - title:string
  - other:unknown

@@ -1,6 +1,6 @@
 
-## LeadershipCardBod
-====================
+## VerticalCardBody
+===================
 ## Props
 
 

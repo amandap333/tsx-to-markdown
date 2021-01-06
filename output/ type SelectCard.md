@@ -1,6 +1,6 @@
 
-##xport type SelectCard
-=======================
+## type SelectCard
+==================
 ## Props
 
 

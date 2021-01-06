@@ -88,13 +88,12 @@ def get_required_props_dict(props_list):
 
 
 def __get_title_name(file):
-    m = re.search(r'\w.*?Props.*?', get_all_props(file))
+    m = re.search(r'\ \w.*?Props.*?', get_all_props(file))
     return m.group(0)
 
 
 def __strip_extra_characters(file):
-    file = __get_title_name(file).strip("Props")
-    final_text = file.strip("type")
+    final_text = __get_title_name(file).strip("Props")
 
     return final_text
 
@@ -135,11 +134,6 @@ def create_readme(required, optional, file):
     return mdFile
 
 
-def create_output_dir(output):
+def create_output_dir():
     p = Path('./output')
     p.mkdir(exist_ok=True)
-    print("Output directory has been created")
-
-
-def move_to_output(file):
-    shutil.move('SelectCard.md', './output')

@@ -1,6 +1,6 @@
 
-## PageTitl
-===========
+## PageTitle
+============
 ## Props
 
 

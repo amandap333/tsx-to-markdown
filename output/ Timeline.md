@@ -1,11 +1,13 @@
 
-## TimelineContain
-==================
+## Timeline
+===========
 ## Props
 
 
 ### Required:
  - children:ReactNode
+ - date:string
+ - info:string
 
 ### Optional:
  - className:string

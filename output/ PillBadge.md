@@ -1,6 +1,6 @@
 
-## Aler
-=======
+## PillBadge
+============
 ## Props
 
 
@@ -9,6 +9,5 @@
 
 ### Optional:
  - className:string
- - color:MeaningfulColor
- - title:string
+ - color:Color
  - other:unknown

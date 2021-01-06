@@ -1,6 +1,6 @@
 
-## Toas
-=======
+## Alert
+========
 ## Props
 
 
@@ -10,6 +10,5 @@
 ### Optional:
  - className:string
  - color:MeaningfulColor
- - dismissAfter:number
  - title:string
  - other:unknown

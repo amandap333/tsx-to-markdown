@@ -1,6 +1,6 @@
 
-## Componen
-===========
+## Component
+============
 ## Props
 
 
