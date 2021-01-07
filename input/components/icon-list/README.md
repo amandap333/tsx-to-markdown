@@ -1,6 +1,6 @@
 
-## IconList
-===========
+## icon-list
+============
 ## Props
 
 

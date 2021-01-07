@@ -1,5 +1,5 @@
 
-## Alert
+## alert
 ========
 ## Props
 

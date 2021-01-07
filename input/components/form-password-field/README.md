@@ -1,6 +1,6 @@
 
-## FormPasswordField
-====================
+## form-password-field
+======================
 ## Props
 
 

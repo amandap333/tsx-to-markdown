@@ -32,7 +32,7 @@ def tsx_markdown(path):
         # create_output_dir()
 
         # 8. Create readme markdown file
-        create_readme(required_props, optional_props, tsx_file_content, tsx_file)
+        create_readme(required_props, optional_props, tsx_file, tsx_file)
 
 if __name__ == "__main__":
     tsx_markdown('./input')

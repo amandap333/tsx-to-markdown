@@ -1,6 +1,6 @@
 
-## FormPhoneField
-=================
+## form-phone-field
+===================
 ## Props
 
 

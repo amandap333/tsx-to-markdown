@@ -1,5 +1,5 @@
 
-## Arrow
+## arrow
 ========
 ## Props
 

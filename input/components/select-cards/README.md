@@ -1,6 +1,6 @@
 
-## SelectCard
-=============
+## select-card
+==============
 ## Props
 
 

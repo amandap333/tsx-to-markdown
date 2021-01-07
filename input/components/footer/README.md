@@ -1,6 +1,6 @@
 
-## Component
-============
+## footer
+=========
 ## Props
 
 

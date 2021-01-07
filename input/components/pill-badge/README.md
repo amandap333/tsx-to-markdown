@@ -1,6 +1,6 @@
 
-## PillBadge
-============
+## pill-badge
+=============
 ## Props
 
 

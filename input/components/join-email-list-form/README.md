@@ -1,6 +1,6 @@
 
-## JoinEmailListForm
-====================
+## join-email-list-form
+=======================
 ## Props
 
 

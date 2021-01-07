@@ -1,6 +1,6 @@
 
-## StaffCard
-============
+## staff-card
+=============
 ## Props
 
 

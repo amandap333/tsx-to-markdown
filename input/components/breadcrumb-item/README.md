@@ -1,6 +1,6 @@
 
-## BreadcrumbItem
-=================
+## breadcrumb-item
+==================
 ## Props
 
 

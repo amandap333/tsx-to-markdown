@@ -1,6 +1,6 @@
 
-## GeneralContactForm
-=====================
+## general-contact-form
+=======================
 ## Props
 
 

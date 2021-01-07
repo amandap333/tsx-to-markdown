@@ -89,14 +89,12 @@ def get_required_props_dict(props_list):
 
 
 def __get_title_name(file):
-    m = re.search(r'\ \w.*?Props.*?', get_all_props(file))
-    return m.group(0)
+    # m = re.search(r'\ \w.*?Props.*?', get_all_props(file))
+    # return m.group(0)
+    head, tail = os.path.split(file)
 
-
-def __strip_extra_characters(file):
-    final_text = __get_title_name(file).strip("Props")
-
-    return final_text
+    name = tail.split('.')[0]
+    return name
 
 
 def __find_path_name(path):
@@ -126,11 +124,11 @@ def create_readme(required, optional, file, path):
 
     optional_props = __format_optional_props(optional)
 
-    name_of_component = __strip_extra_characters(file)
+    name_of_component = __get_title_name(file)
 
     path_name = __find_path_name(path)
 
-    mdFile = MdUtils(file_name=f'./{path_name}/README.md',title=f'##{name_of_component}')
+    mdFile = MdUtils(file_name=f'./{path_name}/README.md',title=f'## {name_of_component}')
     mdFile.write("## Props\n")
     mdFile.write(f"\n\n### Required:")
     for props in required_props:

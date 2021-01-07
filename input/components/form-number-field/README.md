@@ -1,6 +1,6 @@
 
-## FormNumberField
-==================
+## form-number-field
+====================
 ## Props
 
 

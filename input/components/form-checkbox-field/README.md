@@ -1,6 +1,6 @@
 
-## FormCheckboxField
-====================
+## form-checkbox-field
+======================
 ## Props
 
 

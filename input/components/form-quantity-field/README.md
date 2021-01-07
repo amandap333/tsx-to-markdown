@@ -1,6 +1,6 @@
 
-## FormQuantityField
-====================
+## form-quantity-field
+======================
 ## Props
 
 

@@ -1,6 +1,6 @@
 
-## LeadershipCard
-=================
+## leadership-card
+==================
 ## Props
 
 

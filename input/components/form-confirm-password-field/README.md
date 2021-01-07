@@ -1,6 +1,6 @@
 
-## FormConfirmPasswordField
-===========================
+## form-confirm-password-field
+==============================
 ## Props
 
 

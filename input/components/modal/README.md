@@ -1,5 +1,5 @@
 
-## Modal
+## modal
 ========
 ## Props
 

@@ -1,5 +1,5 @@
 
-## Button
+## button
 =========
 ## Props
 
