@@ -1,12 +1,11 @@
 
-## Loading
-==========
+# Loading
+=========
 ## Props
 
-
 ### Required:
- - color:Color
+  - color: Color
 
 ### Optional:
- - size:string
- - other:unknown
+  - size: string
+  - other: unknown

@@ -1,14 +1,13 @@
 
-## Select-card
-==============
+# Select-card
+=============
 ## Props
 
-
 ### Required:
- - description:string
- - id:string
- - price:string
- - title:string
- - unit:string
+  - description: string
+  - id: string
+  - price: string
+  - title: string
+  - unit: string
 
 ### Optional:

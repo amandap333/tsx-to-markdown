@@ -1,10 +1,9 @@
 
-## Bottom-navigation
-====================
+# Bottom-navigation
+===================
 ## Props
 
-
 ### Required:
- - children:string
+  - children: string
 
 ### Optional:

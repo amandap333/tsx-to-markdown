@@ -1,14 +1,13 @@
 
-## Alert
-========
+# Alert
+=======
 ## Props
 
-
 ### Required:
- - children:ReactNode
+  - children: ReactNode
 
 ### Optional:
- - className:string
- - color:MeaningfulColor
- - title:string
- - other:unknown
+  - className: string
+  - color: MeaningfulColor
+  - title: string
+  - other: unknown

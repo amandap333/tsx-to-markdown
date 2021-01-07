@@ -1,10 +1,9 @@
 
-## Footer
-=========
+# Footer
+========
 ## Props
 
-
 ### Required:
- - children:string
+  - children: string
 
 ### Optional:

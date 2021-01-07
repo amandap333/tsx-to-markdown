@@ -1,13 +1,12 @@
 
-## Form-read-only-field
-=======================
+# Form-read-only-field
+======================
 ## Props
 
-
 ### Required:
- - label:string
- - name:string
- - placeholder:string
+  - label: string
+  - name: string
+  - placeholder: string
 
 ### Optional:
- - other:unknown
+  - other: unknown

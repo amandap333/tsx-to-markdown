@@ -5,6 +5,7 @@ import shutil
 import os.path
 
 
+from copy import deepcopy
 from os.path import isdir, isfile
 from mdutils.mdutils import MdUtils
 from os import mkdir
@@ -20,7 +21,7 @@ def read_tsx_file(tsx_file_path):
         return f.read()
 
 
-def get_all_props(tsx_file_content):
+def get_props_match(tsx_file_content):
     m = re.search(r'type \w.*?Props.*?}', tsx_file_content, flags=re.DOTALL)
 
     return m.group(0)
@@ -35,22 +36,31 @@ def __get_props(props_block):
     return m.group(1)
 
 
-def get_props_list(props_block):
-    props_list = __get_props(props_block)
+def __format_props(prop):
+    prop_copy = prop.copy()
 
-    if not props_list:
+    if len(prop_copy) > 2:
+        # handle [other:string]: unknown
+        prop_copy[0] = f'{prop_copy[0]}:{prop_copy[1]}'
+        del[prop_copy[1]]
+
+    prop_copy[0] = prop_copy[0].strip()
+    prop_copy[1] = prop_copy[1].strip()
+
+    return prop_copy
+
+
+def get_props_list(props_block):
+    props_string = __get_props(props_block)
+
+    if not props_string:
         return []
 
-    props = props_list.split(',')
-    props = [prop.split(':') for prop in props]
+    props_list = props_string.split(',')
+    props = [prop.split(':') for prop in props_list]
 
-    for prop in props:
-        if len(prop) > 2:
-            prop[0] = f'{prop[0]}:{prop[1]}'
-            del[prop[1]]
-
-        prop[0] = prop[0].strip()
-        prop[1] = prop[1].strip()
+    for i, prop in enumerate(props):
+        props[i] = __format_props(prop)
 
     return props
 
@@ -78,62 +88,70 @@ def get_props_dict(props):
     return props_dict_list
 
 
-def get_optional_props_dict(props_list):
-    optional_props_dict = [x for x in props_list if not x['required']]
-    return optional_props_dict
+# List of dictionaries
+def get_optional_props(props_list):
+    optional_props = [x for x in props_list if not x['required']]
+    return optional_props
 
 
-def get_required_props_dict(props_list):
-    required_props_dict = [x for x in props_list if x['required']]
-    return required_props_dict
+# List of dictionaries
+def get_required_props(props_list):
+    required_props = [x for x in props_list if x['required']]
+    return required_props
 
 
-def __get_title_name(file):
+def __get_file_name(file):
     head, tail = os.path.split(file)
     name = tail.split('.')[0]
-    capital_name = name.capitalize()
-    return capital_name
+
+    return name
 
 
-def __find_path_name(path):
-    dirname = os.path.dirname(path)
-    print(dirname)
+def __find_path_name(file):
+    dirname = os.path.dirname(file)
     return dirname
 
 
-def __format_required_props(required_dict):
-    for x in range(len(required_dict)):
-        if required_dict[x]['required'] == True:
-            del required_dict[x]["required"]
+def __format_required_props(required_props):
+    required_props_copy = deepcopy(required_props)
+    for x in range(len(required_props_copy)):
+        if required_props_copy[x]['required'] == True:
+            del required_props_copy[x]["required"]
 
-    return required_dict
-
-
-def __format_optional_props(optional_dict):
-    for x in range(len(optional_dict)):
-        if optional_dict[x]['required'] == False:
-            del optional_dict[x]["required"]
-
-    return optional_dict
+    return required_props_copy
 
 
-def create_readme(required, optional, file, path):
+def __format_optional_props(optional_props):
+    optional_props_copy = deepcopy(optional_props)
+    for x in range(len(optional_props_copy)):
+        if optional_props_copy[x]['required'] == False:
+            del optional_props_copy[x]["required"]
+
+    return optional_props_copy
+
+
+def create_readme(required, optional, file):
     required_props = __format_required_props(required)
-
     optional_props = __format_optional_props(optional)
 
-    name_of_component = __get_title_name(file)
+    file_name = __get_file_name(file)
+    name_of_component = file_name.capitalize()
 
-    path_name = __find_path_name(path)
+    path_name = __find_path_name(file)
 
-    mdFile = MdUtils(file_name=f'./{path_name}/{name_of_component}.md',title=f'## {name_of_component}')
+    mdFile = MdUtils(file_name=f'./{path_name}/{file_name}.md', title=f'# {name_of_component}')
+
     mdFile.write("## Props\n")
-    mdFile.write(f"\n\n### Required:")
+    mdFile.write(f"\n### Required:\n")
+
     for props in required_props:
-        mdFile.write(f"\n - {props['name']}:{props['type']}")
-    mdFile.write(f"\n\n### Optional:")
+        mdFile.write(f"  - {props['name']}: {props['type']}\n")
+
+    mdFile.write(f"\n### Optional:\n")
+
     for props in optional_props:
-        mdFile.write(f"\n - {props['name']}:{props['type']}")
+        mdFile.write(f"  - {props['name']}: {props['type']}\n")
+
     mdFile.create_md_file()
 
     return mdFile

@@ -1,37 +1,36 @@
 from os.path import dirname, abspath
-from utils.functions import *
+from utils.functions import (
+    create_readme,
+    get_files,
+    get_optional_props,
+    get_props_dict,
+    get_props_list,
+    get_props_match,
+    get_required_props,
+    read_tsx_file
+)
 
 
 def tsx_markdown(path):
     input_file_type = 'tsx'
 
-    # 1. Read TSX files and append content to a list.
     raw_tsx_files = get_files(path, input_file_type)
     tsx_files = list(filter(lambda x: 'stories' not in x, raw_tsx_files))
-    # print(tsx_files)
 
-    # 2. selecting one file from tsx_files
     for tsx_file in tsx_files:
         tsx_file_content = read_tsx_file(tsx_file)
 
-    # 3. Retrieve all variables from component
-        tsx_variable_block = get_all_props(tsx_file_content)
+        # Retrieve regex match of all props variables in component content
+        tsx_variable_block = get_props_match(tsx_file_content)
 
-        # 4. Create nested list of all variables from componentt
-        props = get_props_list(tsx_variable_block)
+        props_list = get_props_list(tsx_variable_block)
+        props_dict = get_props_dict(props_list)
 
-        # 5. Create list of dictionaries for all variables
-        props_list = get_props_dict(props)
+        optional_props = get_optional_props(props_dict)
+        required_props = get_required_props(props_dict)
 
-        # 6. Seperate into list of dictionaries of all optional props
-        optional_props = get_optional_props_dict(props_list)
+        create_readme(required_props, optional_props, tsx_file)
 
-        # 7. Seperate into of dictionaries of all required props
-        required_props = get_required_props_dict(props_list)
-
-
-        # 8. Create readme markdown file
-        create_readme(required_props, optional_props, tsx_file, tsx_file)
 
 if __name__ == "__main__":
     tsx_markdown('./input')

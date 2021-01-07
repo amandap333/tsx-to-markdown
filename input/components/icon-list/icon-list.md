@@ -1,13 +1,12 @@
 
-## Icon-list
-============
+# Icon-list
+===========
 ## Props
 
-
 ### Required:
- - icon:string
- - iconColor:Color
- - listItems:string[]
+  - icon: string
+  - iconColor: Color
+  - listItems: string[]
 
 ### Optional:
- - other:unknown
+  - other: unknown

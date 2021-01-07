@@ -1,12 +1,11 @@
 
-## Timeline-container
-=====================
+# Timeline-container
+====================
 ## Props
 
-
 ### Required:
- - children:ReactNode
+  - children: ReactNode
 
 ### Optional:
- - className:string
- - other:unknown
+  - className: string
+  - other: unknown

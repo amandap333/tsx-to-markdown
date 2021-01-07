@@ -1,11 +1,10 @@
 
-## Arrow
-========
+# Arrow
+=======
 ## Props
 
-
 ### Required:
- - active:boolean
+  - active: boolean
 
 ### Optional:
- - className:string
+  - className: string

@@ -1,13 +1,12 @@
 
-## Pill-badge
-=============
+# Pill-badge
+============
 ## Props
 
-
 ### Required:
- - children:ReactNode
+  - children: ReactNode
 
 ### Optional:
- - className:string
- - color:Color
- - other:unknown
+  - className: string
+  - color: Color
+  - other: unknown

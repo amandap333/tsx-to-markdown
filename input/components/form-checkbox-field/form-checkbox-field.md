@@ -1,15 +1,14 @@
 
-## Form-checkbox-field
-======================
+# Form-checkbox-field
+=====================
 ## Props
 
-
 ### Required:
- - setValue:VoidValueCallback<boolean>
+  - setValue: VoidValueCallback<boolean>
 
 ### Optional:
- - children:ReactNode
- - label:string
- - size:string
- - visible:boolean
- - other:unknown
+  - children: ReactNode
+  - label: string
+  - size: string
+  - visible: boolean
+  - other: unknown

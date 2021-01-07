@@ -1,13 +1,12 @@
 
-## Tagline
-==========
+# Tagline
+=========
 ## Props
 
-
 ### Required:
- - tagline:string
+  - tagline: string
 
 ### Optional:
- - className:string
- - closeMenu:Dispatch<SetStateAction<boolean>>
- - other:unknown
+  - className: string
+  - closeMenu: Dispatch<SetStateAction<boolean>>
+  - other: unknown

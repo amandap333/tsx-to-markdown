@@ -1,14 +1,13 @@
 
-## Timeline
-===========
+# Timeline
+==========
 ## Props
 
-
 ### Required:
- - children:ReactNode
- - date:string
- - info:string
+  - children: ReactNode
+  - date: string
+  - info: string
 
 ### Optional:
- - className:string
- - other:unknown
+  - className: string
+  - other: unknown

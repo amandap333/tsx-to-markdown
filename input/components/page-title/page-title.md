@@ -1,10 +1,9 @@
 
-## Page-title
-=============
+# Page-title
+============
 ## Props
 
-
 ### Required:
- - children:ReactNode
+  - children: ReactNode
 
 ### Optional:

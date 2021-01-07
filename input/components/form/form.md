@@ -1,17 +1,16 @@
 
-## Form
-=======
+# Form
+======
 ## Props
 
-
 ### Required:
- - children:ReactNode
- - loading:boolean
- - submitCallback: (e:MouseEvent) => void
- - submitted:boolean
- - valid:boolean
+  - children: ReactNode
+  - loading: boolean
+  - submitCallback: (e: MouseEvent) => void
+  - submitted: boolean
+  - valid: boolean
 
 ### Optional:
- - className:string
- - submitButtonText:string
- - other:unknown
+  - className: string
+  - submitButtonText: string
+  - other: unknown

@@ -1,18 +1,17 @@
 
-## Form-phone-field
-===================
+# Form-phone-field
+==================
 ## Props
 
-
 ### Required:
- - label:string
- - setValid:VoidValueCallback<boolean>
- - setValue:VoidValueCallback<string>
+  - label: string
+  - setValid: VoidValueCallback<boolean>
+  - setValue: VoidValueCallback<string>
 
 ### Optional:
- - id:string
- - invalidMessage:string
- - name:string
- - optional:boolean
- - visible:boolean
- - other:unknown
+  - id: string
+  - invalidMessage: string
+  - name: string
+  - optional: boolean
+  - visible: boolean
+  - other: unknown

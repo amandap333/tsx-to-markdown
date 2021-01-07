@@ -1,13 +1,12 @@
 
-## Form-quantity-field
-======================
+# Form-quantity-field
+=====================
 ## Props
 
-
 ### Required:
- - setValue:VoidValueCallback<number>
+  - setValue: VoidValueCallback<number>
 
 ### Optional:
- - defaultQuantity:number
- - visible:boolean
- - other:unknown
+  - defaultQuantity: number
+  - visible: boolean
+  - other: unknown
