@@ -1,12 +1,12 @@
 
-## VerticalCardBody
-===================
+## VerticalCard
+===============
 ## Props
 
 
 ### Required:
  - children:ReactNode
+ - className:string
 
 ### Optional:
- - className:string
  - other:unknown

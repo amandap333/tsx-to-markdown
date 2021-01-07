@@ -1,5 +1,5 @@
 
-## TitleBorde
+## type Navba
 =============
 ## Props
 
@@ -7,5 +7,5 @@
 ### Required:
 
 ### Optional:
- - className:string
- - color:string
+ - component:any
+ - other:unknown

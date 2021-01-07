@@ -2,6 +2,7 @@ import glob
 import re
 import json
 import shutil
+import os.path
 
 
 from os.path import isdir, isfile
@@ -98,6 +99,12 @@ def __strip_extra_characters(file):
     return final_text
 
 
+def __find_path_name(path):
+    dirname = os.path.dirname(path)
+    print(dirname)
+    return dirname
+
+
 def __format_required_props(required_dict):
     for x in range(len(required_dict)):
         if required_dict[x]['required'] == True:
@@ -114,14 +121,16 @@ def __format_optional_props(optional_dict):
     return optional_dict
 
 
-def create_readme(required, optional, file):
+def create_readme(required, optional, file, path):
     required_props = __format_required_props(required)
 
     optional_props = __format_optional_props(optional)
 
     name_of_component = __strip_extra_characters(file)
 
-    mdFile = MdUtils(file_name=f'./output/{name_of_component}',title=f'##{name_of_component}')
+    path_name = __find_path_name(path)
+
+    mdFile = MdUtils(file_name=f'./{path_name}/README.md',title=f'##{name_of_component}')
     mdFile.write("## Props\n")
     mdFile.write(f"\n\n### Required:")
     for props in required_props:
@@ -132,8 +141,3 @@ def create_readme(required, optional, file):
     mdFile.create_md_file()
 
     return mdFile
-
-
-def create_output_dir():
-    p = Path('./output')
-    p.mkdir(exist_ok=True)

@@ -1,6 +1,6 @@
 
-## SelectCard
-=============
+## type SelectCard
+==================
 ## Props
 
 
