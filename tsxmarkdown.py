@@ -29,7 +29,6 @@ def tsx_markdown(path):
         # 7. Seperate into of dictionaries of all required props
         required_props = get_required_props_dict(props_list)
 
-        # create_output_dir()
 
         # 8. Create readme markdown file
         create_readme(required_props, optional_props, tsx_file, tsx_file)
