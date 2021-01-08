@@ -91,6 +91,8 @@ def get_props_dict(props):
 # List of dictionaries
 def get_optional_props(props_list):
     optional_props = [x for x in props_list if not x['required']]
+    # print(props_list)
+    print(optional_props)
     return optional_props
 
 
@@ -139,7 +141,7 @@ def create_readme(required, optional, file):
 
     path_name = __find_path_name(file)
 
-    mdFile = MdUtils(file_name=f'./{path_name}/{file_name}.md', title=f'# {name_of_component}')
+    mdFile = MdUtils(file_name=f'./{path_name}/README.md', title=f'# {name_of_component}')
 
     mdFile.write("## Props\n")
     mdFile.write(f"\n### Required:\n")
