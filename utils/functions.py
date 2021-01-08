@@ -91,8 +91,6 @@ def get_props_dict(props):
 # List of dictionaries
 def get_optional_props(props_list):
     optional_props = [x for x in props_list if not x['required']]
-    # print(props_list)
-    print(optional_props)
     return optional_props
 
 
