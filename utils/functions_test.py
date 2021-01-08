@@ -21,4 +21,3 @@ def test_get_required_props_passing():
 def test_get_required_props_failing():
     with pytest.raises(AssertionError):
       assert get_required_props([{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]) == [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}]
-

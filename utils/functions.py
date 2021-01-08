@@ -1,8 +1,9 @@
+import click
 import glob
-import re
 import json
-import shutil
 import os.path
+import re
+import shutil
 
 
 from copy import deepcopy
@@ -129,6 +130,10 @@ def __format_optional_props(optional_props):
 
     return optional_props_copy
 
+@click.command()
+def promt_for_overwrite():
+    click.echo('Hello World!')
+
 
 def create_readme(required, optional, file):
     required_props = __format_required_props(required)
@@ -138,6 +143,11 @@ def create_readme(required, optional, file):
     name_of_component = file_name.capitalize()
 
     path_name = __find_path_name(file)
+
+    if os.path.exists('README.md'):
+        print(f"{name_of_component} readme being overwritten!!")
+        promt_for_overwrite()
+
 
     mdFile = MdUtils(file_name=f'./{path_name}/README.md', title=f'# {name_of_component}')
 
