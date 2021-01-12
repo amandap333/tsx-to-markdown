@@ -5,6 +5,7 @@ from os.path import dirname, abspath
 
 from utils.functions import (
     create_readme,
+    create_output_directory,
     get_files,
     get_optional_props,
     get_props_dict,
@@ -20,6 +21,8 @@ def tsx_markdown(path):
 
     raw_tsx_files = get_files(path, input_file_type)
     tsx_files = list(filter(lambda x: 'stories' not in x, raw_tsx_files))
+
+    create_output_directory()
 
     for tsx_file in tsx_files:
         tsx_file_content = read_tsx_file(tsx_file)

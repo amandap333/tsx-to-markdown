@@ -1,4 +1,3 @@
-import click
 import glob
 import json
 import os.path
@@ -7,6 +6,7 @@ import shutil
 
 
 from copy import deepcopy
+from shutil import rmtree
 from os.path import isdir, isfile
 from mdutils.mdutils import MdUtils
 from os import mkdir
@@ -108,9 +108,13 @@ def __get_file_name(file):
     return name
 
 
-def __find_path_name(file):
-    dirname = os.path.dirname(file)
-    return dirname
+def create_output_directory():
+    if isdir('./output'):
+        rmtree('./output')
+        print('Deleted exsisting directory')
+
+    mkdir('./output')
+    print('created output directory')
 
 
 def __format_required_props(required_props):
@@ -118,8 +122,8 @@ def __format_required_props(required_props):
     for x in range(len(required_props_copy)):
         if required_props_copy[x]['required'] == True:
             del required_props_copy[x]["required"]
-
     return required_props_copy
+
 
 
 def __format_optional_props(optional_props):
@@ -130,10 +134,6 @@ def __format_optional_props(optional_props):
 
     return optional_props_copy
 
-@click.command()
-def promt_for_overwrite():
-    click.echo('Hello World!')
-
 
 def create_readme(required, optional, file):
     required_props = __format_required_props(required)
@@ -142,14 +142,10 @@ def create_readme(required, optional, file):
     file_name = __get_file_name(file)
     name_of_component = file_name.capitalize()
 
-    path_name = __find_path_name(file)
+    mdFile = MdUtils(file_name=f'./output/{file_name}.md', title=f'# {name_of_component}')
 
-    if os.path.exists('README.md'):
-        print(f"{name_of_component} readme being overwritten!!")
-        promt_for_overwrite()
-
-
-    mdFile = MdUtils(file_name=f'./{path_name}/README.md', title=f'# {name_of_component}')
+    if os.path.exists(f'./output/{file_name}.md'):
+        print(f'{file_name}.md being overwritten!!')
 
     mdFile.write("## Props\n")
     mdFile.write(f"\n### Required:\n")
