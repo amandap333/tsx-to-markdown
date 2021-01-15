@@ -20,13 +20,13 @@ def test_get_optional_props_failing():
 
 
 def test_get_props_dict_passing():
-    assert get_props_dict([['defaultQuantity?', 'number'], ['setValue', 'VoidValueCallback<number>'], ['visible?', 'boolean'], ['[other:string]', 'unknown']]) == [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}, {'required': False, 'name': 'visible', 'type': 'boolean'}, {'required': False, 'name': 'other', 'type': 'unknown'}]
+    assert get_props_dict([['defaultQuantity?', 'number'], ['setValue', 'VoidValueCallback<number>']]) == [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
 
 
 # testing to make sure you pass in the correct prop
 def test_get_props_dict_failing():
     with pytest.raises(TypeError):
-      assert get_props_dict([{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]) == [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}, {'required': False, 'name': 'visible', 'type': 'boolean'}, {'required': False, 'name': 'other', 'type': 'unknown'}]
+      assert get_props_dict([{'required': False, 'name': 'defaultQuantity', 'type': 'number'}]) == [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}]
 
 
 def test_get_required_props_passing():
@@ -66,4 +66,4 @@ def test__format_props_passing():
 # test to make sure it takes the correct input
 def test__format_props_failing():
     with pytest.raises(AttributeError):
-      assert __format_props([{'required': False, 'name': 'name', 'type': 'string'}, {'required': True, 'name': 'title', 'type': 'string'}]) == [['defaultQuantity?', 'number'], ['setValue', 'VoidValueCallback<number>'], ['visible?', 'boolean'], ['[other:string]', 'unknown']]
+      assert __format_props([{'required': False, 'name': 'visible', 'type': 'boolean'}]) == [['visible?', 'boolean']]
