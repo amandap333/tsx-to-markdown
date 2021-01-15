@@ -32,6 +32,7 @@ def tsx_markdown(path):
 
         props_list = get_props_list(tsx_variable_block)
         props_dict = get_props_dict(props_list)
+        print(props_dict)
 
         optional_props = get_optional_props(props_dict)
         required_props = get_required_props(props_dict)
