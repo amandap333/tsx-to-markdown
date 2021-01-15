@@ -10,3 +10,10 @@ TSXTOMARKDOWN
 to run test
 - run python or python3 -m pytest utils/functions_test.py
 
+
+TODO:
+
+- test coverage
+- clean up functions_test.py
+- add option for single file
+- precommit hook to check all past are passing before commit

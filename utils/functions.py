@@ -25,6 +25,9 @@ def read_tsx_file(tsx_file_path):
 def get_props_match(tsx_file_content):
     m = re.search(r'type \w.*?Props.*?}', tsx_file_content, flags=re.DOTALL)
 
+    if m is None:
+        return None
+
     return m.group(0)
 
 

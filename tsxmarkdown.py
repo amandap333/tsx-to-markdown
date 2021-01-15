@@ -29,6 +29,9 @@ def tsx_markdown(path):
 
         # Retrieve regex match of all props variables in component content
         tsx_variable_block = get_props_match(tsx_file_content)
+        if tsx_variable_block is None:
+            print(f'no props in file: {tsx_file}')
+            continue
 
         props_list = get_props_list(tsx_variable_block)
         props_dict = get_props_dict(props_list)
