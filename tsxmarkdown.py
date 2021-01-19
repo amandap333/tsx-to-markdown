@@ -1,5 +1,4 @@
 import sys
-import click
 
 from os.path import dirname, abspath
 
