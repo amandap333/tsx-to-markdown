@@ -10,10 +10,13 @@ from functions import (
     __format_required_props
 )
 
-def test_get_optional_props_passing():
-    input = [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
 
-    expected = [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}]
+def test_get_optional_props_passing():
+    input = [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {
+        'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
+
+    expected = [
+        {'required': False, 'name': 'defaultQuantity', 'type': 'number'}]
 
     actual = get_optional_props(input)
 
@@ -22,58 +25,137 @@ def test_get_optional_props_passing():
 
 # testing to make sure required props don't get read as optional
 def test_get_optional_props_failing():
+    input = [{'required': True, 'name': 'defaultQuantity', 'type': 'number'}, {
+        'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
+
+    expected = [{'required': False, 'name': 'setValue',
+                 'type': 'VoidValueCallback<number>'}]
+
+    actual = get_optional_props(input)
+
     with pytest.raises(AssertionError):
-        assert get_optional_props([{'required': True, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]) == [{'required': False, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
+        assert expected == actual
 
 
 def test_get_props_dict_passing():
-    assert get_props_dict([['defaultQuantity?', 'number'], ['setValue', 'VoidValueCallback<number>']]) == [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
+    input = [['defaultQuantity?', 'number'], [
+        'setValue', 'VoidValueCallback<number>']]
+
+    expected = [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {
+        'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
+
+    actual = get_props_dict(input)
+
+    assert expected == actual
 
 
 # testing to make sure you pass in the correct prop
 def test_get_props_dict_failing():
+    input = [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}]
+
+    expected = [
+        {'required': False, 'name': 'defaultQuantity', 'type': 'number'}]
+
     with pytest.raises(TypeError):
-        assert get_props_dict([{'required': False, 'name': 'defaultQuantity', 'type': 'number'}]) == [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}]
+        get_props_dict(input) == expected
 
 
 def test_get_required_props_passing():
-    assert get_required_props([{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]) == [{'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
+    input = [{'required': False, 'name': 'defaultQuantity', 'type': 'number'}, {
+        'required': True, 'name': 'setValue', 'type': 'VoidValueCallback<number>'}]
+
+    expected = [{'required': True, 'name': 'setValue',
+                 'type': 'VoidValueCallback<number>'}]
+
+    actual = get_required_props(input)
+
+    assert expected == actual
 
 
 # testing to make sure optional props don't get passed in as a required
 def test_get_required_props_failing():
+    input = [{'required': False, 'name': 'name', 'type': 'string'},
+             {'required': False, 'name': 'title', 'type': 'string'}]
+
+    expected = [{'name': 'name', 'type': 'string'},
+                {'name': 'title', 'type': 'string'}]
+
+    actual = get_required_props(input)
+
     with pytest.raises(AssertionError):
-        assert get_required_props([{'required': False, 'name': 'name', 'type': 'string'}, {'required': False, 'name': 'title', 'type': 'string'}]) == [{'name': 'name', 'type': 'string'}, {'name': 'title', 'type': 'string'}]
+        assert expected == actual
 
 
 def test__format_required_props_passing():
-    assert __format_required_props([{'required': True, 'name': 'name', 'type': 'string'}, {'required': True, 'name': 'title', 'type': 'string'}]) == [{'name': 'name', 'type': 'string'}, {'name': 'title', 'type': 'string'}]
+    input = [{'required': True, 'name': 'name', 'type': 'string'},
+             {'required': True, 'name': 'title', 'type': 'string'}]
+
+    expected = [{'name': 'name', 'type': 'string'},
+                {'name': 'title', 'type': 'string'}]
+
+    actual = __format_required_props(input)
+
+    assert expected == actual
 
 
 # testing to make sure optional props don't go into the required array
 def test__format_required_props_failing():
+    input = [{'required': False, 'name': 'name', 'type': 'string'},
+             {'required': True, 'name': 'title', 'type': 'string'}]
+
+    expected = [{'name': 'name', 'type': 'string'},
+                {'name': 'title', 'type': 'string'}]
+
+    actual = __format_required_props(input)
+
     with pytest.raises(AssertionError):
-        assert __format_required_props([{'required': False, 'name': 'name', 'type': 'string'}, {'required': True, 'name': 'title', 'type': 'string'}]) == [{'name': 'name', 'type': 'string'}, {'name': 'title', 'type': 'string'}]
+        assert expected == actual
 
 
 def test__format_optional_props_passing():
-    assert __format_optional_props([{'required': False, 'name': 'name', 'type': 'string'}, {'required': False, 'name': 'title', 'type': 'string'}]) == [{'name': 'name', 'type': 'string'}, {'name': 'title', 'type': 'string'}]
+    input = [{'required': False, 'name': 'name', 'type': 'string'},
+             {'required': False, 'name': 'title', 'type': 'string'}]
+
+    expected = [{'name': 'name', 'type': 'string'},
+                {'name': 'title', 'type': 'string'}]
+
+    actual = __format_optional_props(input)
+
+    assert expected == actual
 
 
 # testing to make sure required props don't work
 def test__format_optional_props_failing():
+    input = [{'required': False, 'name': 'name', 'type': 'string'},
+             {'required': True, 'name': 'title', 'type': 'string'}]
+
+    expected = [[{'name': 'name', 'type': 'string'},
+                 {'name': 'title', 'type': 'string'}]]
+
+    actual = __format_optional_props(input)
+
     with pytest.raises(AssertionError):
-        assert __format_optional_props([{'required': False, 'name': 'name', 'type': 'string'}, {'required': True, 'name': 'title', 'type': 'string'}]) == [{'name': 'name', 'type': 'string'}, {'name': 'title', 'type': 'string'}]
+        assert expected == actual
 
 
 def test__format_props_passing():
-    assert __format_props(['\n  visible?', ' boolean']) == ['visible?', 'boolean']
+    input = ['\n  visible?', ' boolean']
+
+    expected = ['visible?', 'boolean']
+
+    actual = __format_props(input)
+
+    assert actual == expected
 
 
 # test to make sure it takes the correct input
 def test__format_props_failing():
+    input = [{'required': False, 'name': 'visible', 'type': 'boolean'}]
+
+    expected = [['visible?', 'boolean']]
+
     with pytest.raises(AttributeError):
-        assert __format_props([{'required': False, 'name': 'visible', 'type': 'boolean'}]) == [['visible?', 'boolean']]
+        assert expected == __format_props(input)
 
 
 # def test_get_props_match():
