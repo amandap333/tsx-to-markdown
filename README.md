@@ -5,7 +5,9 @@ TSXTOMARKDOWN
 - Put the file(s)/folder(s) you want to extract the props from in the input folder.
 - then run python or python3 tsxmarkdown.py in your terminal.
 - It'll output everything to a new output directory
-- /usr/local/opt/python@3.9/bin/python3.9 /Users/aprofitt/projects/tsx-to-markdown/tsxmarkdown.py to run
+
+
+- to run script run: python or python3 tsxmarkdown.py
 
 
 to run test
