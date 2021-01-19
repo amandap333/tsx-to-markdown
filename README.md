@@ -7,19 +7,16 @@ TSXTOMARKDOWN
 - It'll output everything to a new output directory
 
 
-- to run script run: python or python3 tsxmarkdown.py
+### to run script
+- run python or python3 tsxmarkdown.py
 
-
-to run test
+### to run test
 - run pytest utils/functions_test.py
 
-
+### to run coverage test
+- coverage run -m pytest utils/functions_test.py
+- coverage report
 
 TODO:
 
-- test coverage
-- clean up functions_test.py
 - add option for single file
-
-
-njksdfjdskl
