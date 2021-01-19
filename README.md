@@ -8,7 +8,8 @@ TSXTOMARKDOWN
 
 
 to run test
-- run python or python3 -m pytest utils/functions_test.py
+- run pytest utils/functions_test.py
+
 
 
 TODO:
