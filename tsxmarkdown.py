@@ -1,6 +1,7 @@
 import sys
+import click
 
-from os.path import dirname, abspath
+from os.path import dirname, abspath, isdir
 
 from utils.functions import (
     create_readme,
@@ -20,7 +21,6 @@ def tsx_markdown(path):
 
     raw_tsx_files = get_files(path, input_file_type)
     tsx_files = list(filter(lambda x: 'stories' not in x, raw_tsx_files))
-
     create_output_directory()
 
     for tsx_file in tsx_files:
@@ -41,5 +41,36 @@ def tsx_markdown(path):
         create_readme(required_props, optional_props, tsx_file)
 
 
-if __name__ == "__main__":
+def manage_input_directory(input_directory):
+    if not isdir(input_directory):
+        print('Not a directory. Use -f flag for a file.')
+        return
+
+    tsx_markdown(input_directory)
+
+
+def manage_input_file(input_file):
+    if isdir(input_file):
+        print('Not a file. Use -d flag for a directory.')
+        return
+
+    tsx_markdown(input_file)
+
+
+@click.command()
+@click.option('-f', '--file', 'input_file', type=click.Path(exists=True), help='Individual file')
+@click.option('-d', '--directory', 'input_directory', type=click.Path(exists=True), help='Directory path')
+def cli(input_file, input_directory):
+    if input_file:
+        manage_input_file(input_file)
+        return
+
+    if input_directory:
+        manage_input_directory(input_directory)
+        return
+
     tsx_markdown('./input')
+
+
+if __name__ == "__main__":
+    cli()

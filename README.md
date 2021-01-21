@@ -10,13 +10,18 @@ TSXTOMARKDOWN
 ### to run script
 - run python or python3 tsxmarkdown.py
 
+### to run specific directory
+- python3 tsxmarkdown.py  -d <directory path>
+
+### to run specific file
+- python3 tsxmarkdown.py  -f <file path>
+
+### to run help
+- python3 tsxmarkdown.py --help
+
 ### to run test
 - run pytest utils/functions_test.py
 
 ### to run coverage test
 - coverage run -m pytest utils/functions_test.py
 - coverage report
-
-TODO:
-
-- add option for single file

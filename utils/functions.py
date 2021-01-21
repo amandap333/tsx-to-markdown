@@ -3,6 +3,7 @@ import json
 import os.path
 import re
 import shutil
+import click
 
 
 from copy import deepcopy
@@ -84,6 +85,7 @@ def __create_prop_dictionary(prop):
 
     return prop_dict
 
+
 def get_props_dict(props):
     props_dict_list = []
     for prop in props:
@@ -128,7 +130,6 @@ def __format_required_props(required_props):
     return required_props_copy
 
 
-
 def __format_optional_props(optional_props):
     optional_props_copy = deepcopy(optional_props)
     for x in range(len(optional_props_copy)):
@@ -145,7 +146,8 @@ def create_readme(required, optional, file):
     file_name = __get_file_name(file)
     name_of_component = file_name.capitalize()
 
-    mdFile = MdUtils(file_name=f'./output/{file_name}.md', title=f'# {name_of_component}')
+    mdFile = MdUtils(
+        file_name=f'./output/{file_name}.md', title=f'# {name_of_component}')
 
     if os.path.exists(f'./output/{file_name}.md'):
         print(f'{file_name}.md being overwritten!!')
