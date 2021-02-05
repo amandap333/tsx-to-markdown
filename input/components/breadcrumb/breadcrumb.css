@@ -1,4 +1,0 @@
-.breadcrumb :not(:first-child):before {
-  content: " / ";    
-}
-

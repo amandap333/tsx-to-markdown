@@ -1,0 +1,6 @@
+*.pyc
+input/
+output/
+__pycache__/
+.coverage
+.coverage.*
