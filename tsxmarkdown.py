@@ -44,11 +44,13 @@ def create_readmes_from_directory(path):
         create_tsx_file_readme(tsx_file)
 
 
-def take_input_directory(input_directory,):
+def take_input_directory(input_directory):
+    print(input_directory)
     if not isdir(input_directory):
         print('Not a directory. Use -f flag for a file.')
         return
 
+    print(create_readmes_from_directory(input_directory))
     create_readmes_from_directory(input_directory)
 
 

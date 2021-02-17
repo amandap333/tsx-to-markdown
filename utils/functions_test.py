@@ -4,10 +4,15 @@ from functions import (
     get_optional_props,
     get_required_props,
     __format_props,
+    __get_file_name,
+    __get_props,
     get_props_dict,
+    get_props_list,
     get_props_match,
     __format_optional_props,
-    __format_required_props
+    create_output_directory,
+    __format_required_props,
+    __create_prop_dictionary
 )
 
 
@@ -158,65 +163,103 @@ def test__format_props_failing():
         assert expected == __format_props(input)
 
 
-# def test_get_props_match():
-#     assert get_props_match("""const FormQuantityField: FC<FormQuantityFieldProps> = ({
-#   defaultQuantity=1,
-#   setValue,
-#   visible=true,
-#   ...other
-# }: FormQuantityFieldProps) => {
-#   const inputRef = useRef<HTMLInputElement>(null)
+def test__get_file_name_passing():
 
-#   const [quantity, setQuantity] = useState<number>(defaultQuantity)
+    input = './input/components/form-quantity-field/form-quantity-field.tsx'
 
-#   const formattedDecrease: string = formatClassList(MINUS)
-#   const formattedMinusIcon: string = formatClassList(MINUS_ICON)
-#   const formattedIncrease: string = formatClassList(PLUS)
-#   const formattedPlusIcon: string = formatClassList(PLUS_ICON)
-#   const formattedQuantity: string = formatClassList(QUANTITY)
+    expected = 'form-quantity-field'
 
-#   useEffect(() => {
-#     if (!validateQuantity(quantity)) {
-#       setQuantity(1)
-#     }
-#   }, [quantity])
+    actual = __get_file_name(input)
 
-#   return (
-#     <div {...other}>
-#       <button
-#         aria-label='Decrease by One'
-#         className={formattedDecrease}
-#         disabled={ visible ? false : true }
-#         onClick={(e: MouseEvent) => handleDecrease(e, setQuantity, setValue)}
-#         tabIndex={ visible ? 0 : -1 }
-#         title='Decrease by One'
-#       >
-#         <i className={formattedMinusIcon} />
-#       </button>
-#       <input
-#         className={formattedQuantity}
-#         ref={inputRef}
-#         onChange={(e: FormEvent) => handleChange(e, inputRef, setQuantity)}
-#         value={quantity}
-#       />
-#       <button
-#         aria-label='Increase by One'
-#         className={formattedIncrease}
-#         disabled={ visible ? false : true }
-#         onClick={(e: MouseEvent) => handleIncrease(e, setQuantity, setValue)}
-#         tabIndex={ visible ? 0 : -1 }
-#         title='Increase by One'
-#       >
-#         <i className={formattedPlusIcon} />
-#       </button>
-#     </div>
-#   )
-# }
+    assert expected == actual
 
-# export default FormQuantityField""") == """ type FormQuantityFieldProps = {
-#   defaultQuantity?: number,
-#   setValue: VoidValueCallback<number>,
-#   visible?: boolean,
-#   [other:string]: unknown
-# }
-# """
+
+def test__get_file_name_failing():
+    input = './input/components/form-quantity-field/form-quantity-field.tsx'
+
+    expected = './input/components/form-quantity-field/form-quantity-field.tsx'
+
+    with pytest.raises(AssertionError):
+        assert expected == __get_file_name(input)
+
+
+def test__create_prop_dictionary_passing():
+
+    input = ['label', 'string']
+
+    expected = {'required': True, 'name': 'label', 'type': 'string'}
+
+    actual = __create_prop_dictionary(input)
+
+    assert expected == actual
+
+
+def test__create_prop_dictionary_failing():
+    input = ['label', 'string']
+
+    expected = {'required': True, 'name': 'name', 'type': 'string'}
+
+    with pytest.raises(AssertionError):
+        assert expected == __create_prop_dictionary(input)
+
+
+def test_get_props_list_passing():
+
+    input = 'type FormReadOnlyFieldProps = { label: string, name: string, placeholder: string,[other:string]: unknown }'
+
+    expected = [['label', 'string'], ['name', 'string'], [
+        'placeholder', 'string'], ['[other:string]', 'unknown']]
+
+    actual = get_props_list(input)
+
+    assert expected == actual
+
+
+def test_get_props_list_failing():
+    input = 'type FormQuantityFieldProps = { defaultQuantity?: number, setValue: VoidValueCallback<number>, visible?: boolean,[other:string]: unknown}'
+
+    expected = [['defaultQuantity?', 'number'], ['setValue', 'VoidValueCallback<number>'], [
+        'visible?', 'boolean'], ['[other:string]', 'unknown']]
+
+    with pytest.raises(AssertionError):
+        assert expected == get_props_list(input)
+
+
+def test__get_props_passing():
+
+    input = 'type FormQuantityFieldProps = { defaultQuantity?: number, setValue: VoidValueCallback<number>, visible?: boolean,[other:string]: unknown }'
+
+    expected = 'defaultQuantity?: number, setValue: VoidValueCallback<number>, visible?: boolean,[other:string]: unknown'
+
+    actual = __get_props(input)
+
+    assert expected == actual
+
+
+def test__get_props_failing():
+    input = 'type FormQuantityFieldProps = { defaultQuantity?: number, setValue: VoidValueCallback<number>, visible?: boolean,[other:string]: unknown }'
+
+    expected = ' children: ReactNode, className?: string, color?: Color, [other:string]: unknown'
+
+    with pytest.raises(AssertionError):
+        assert expected == __get_props(input)
+
+
+# def test_get_props_match_passing():
+
+#     input = 'const FormQuantityField: FC<FormQuantityFieldProps> = ({ defaultQuantity=1,setValue, visible=true, ...other }: FormQuantityFieldProps) => { const inputRef = useRef<HTMLInputElement>(null) const [quantity, setQuantity] = useState<number>(defaultQuantity) const formattedDecrease: string = formatClassList(MINUS) const formattedMinusIcon: string = formatClassList(MINUS_ICON) const formattedIncrease: string = formatClassList(PLUS)const formattedPlusIcon: string = formatClassList(PLUS_ICON) const formattedQuantity: string = formatClassList(QUANTITY) useEffect(() => { if (!validateQuantity(quantity)) { setQuantity(1)} }, [quantity])'
+
+#     expected = 'type FormQuantityFieldProps = { defaultQuantity?: number, setValue: VoidValueCallback<number>, visible?: boolean,[other:string]: unknown}'
+
+#     actual = get_props_match(input)
+
+#     assert expected == actual
+
+
+def test_get_props_match_failing():
+    input = 'const FormQuantityField: FC<FormQuantityFieldProps> = ({ defaultQuantity=1,setValue, visible=true, ...other }: FormQuantityFieldProps) => { const inputRef = useRef<HTMLInputElement>(null) const [quantity, setQuantity] = useState<number>(defaultQuantity) const formattedDecrease: string = formatClassList(MINUS) const formattedMinusIcon: string = formatClassList(MINUS_ICON) const formattedIncrease: string = formatClassList(PLUS)const formattedPlusIcon: string = formatClassList(PLUS_ICON) const formattedQuantity: string = formatClassList(QUANTITY) useEffect(() => { if (!validateQuantity(quantity)) { setQuantity(1)} }, [quantity])'
+
+    expected = 'type TagProps = { children: ReactNode,className?: string, color?: Color,[other:string]: unknown }'
+
+    with pytest.raises(AssertionError):
+        assert expected == get_props_match(input)

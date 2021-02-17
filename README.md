@@ -25,3 +25,27 @@ TSXTOMARKDOWN
 ### to run coverage test
 - coverage run -m pytest utils/functions_test.py
 - coverage report
+
+
+#### functions tested
+
+    get_optional_props,
+    get_required_props,
+    __format_props,
+    __get_file_name,
+    get_props_dict,
+    get_props_list,
+    get_props,
+    get_props_match,
+    __format_optional_props,
+    __format_required_props,
+    __create_prop_dictionary
+
+
+### still need to test
+    create_output_directory,
+    get_files,
+    read_tsx_file,
+    take_input_file,
+    take_input_directory,
+    def_create_readme,
