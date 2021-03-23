@@ -9,6 +9,7 @@ from functions import (
     get_props_dict,
     get_props_list,
     get_props_match,
+    read_tsx_file,
     __format_optional_props,
     create_output_directory,
     __format_required_props,
@@ -279,3 +280,23 @@ def test_create_output_directory_failing(tmpdir):
     assert len(tmpdir.listdir()) == 1
     with pytest.raises(AssertionError):
         assert 0
+
+
+def test_read_tsx_file_failing():
+    input = 'input/components/arrow/arrow.tsx'
+
+    expected = "import React, { FC } from 'react' import { formatClassList,joinStrings } from '@bscs-dev-team/bscs-design-system-common' import './arrow.css' type ArrowProps = { active: boolean, className?: string } const ACTIVE_ARROW: string = ` active arrow ` const ARROW: string = ` arrow ` const TEXT_LEFT: string = ` text-left ` const Arrow: FC<ArrowProps> = ({ active=false,className }: ArrowProps) => { const formattedActiveArrow: string = formatClassList(ACTIVE_ARROW) const formattedArrow: string = formatClassList(ARROW) const formattedTextLeft: string = formatClassList(TEXT_LEFT) return ( <i className={ className && active ? joinStrings(' ', className, formattedTextLeft,formattedActiveArrow) : className ? joinStrings(' ', className, formattedTextLeft, formattedArrow) : formattedActiveArrow } /> ) } export default Arrow"
+
+    actual = read_tsx_file(input)
+
+    with pytest.raises(AssertionError):
+        assert expected == actual
+
+
+# testing to make sure you pass in the correct prop
+def test_read_tsx_file_passing():
+    input = 'input/components/arrow/arrow.tsx'
+
+    expected = "import React, { FC } from 'react' import { formatClassList,joinStrings } from '@bscs-dev-team/bscs-design-system-common' import './arrow.css' type ArrowProps = { active: boolean, className?: string } const ACTIVE_ARROW: string = ` active arrow ` const ARROW: string = ` arrow ` const TEXT_LEFT: string = ` text-left ` const Arrow: FC<ArrowProps> = ({ active=false,className }: ArrowProps) => { const formattedActiveArrow: string = formatClassList(ACTIVE_ARROW) const formattedArrow: string = formatClassList(ARROW) const formattedTextLeft: string = formatClassList(TEXT_LEFT) return ( <i className={ className && active ? joinStrings(' ', className, formattedTextLeft,formattedActiveArrow) : className ? joinStrings(' ', className, formattedTextLeft, formattedArrow) : formattedActiveArrow } /> ) } export default Arrow no props in file: input/components/arrow/arrow.tsx"
+
+    read_tsx_file(input) == expected

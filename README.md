@@ -43,9 +43,5 @@ TSXTOMARKDOWN
 
 
 ### still need to test
-    create_output_directory,
     get_files,
     read_tsx_file,
-    take_input_file,
-    take_input_directory,
-    def_create_readme,
