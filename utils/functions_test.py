@@ -263,3 +263,19 @@ def test_get_props_match_failing():
 
     with pytest.raises(AssertionError):
         assert expected == get_props_match(input)
+
+
+def test_create_output_directory_passing(tmpdir):
+    p = tmpdir.mkdir("sub").join("hello.txt")
+    p.write("content")
+    assert p.read() == "content"
+    assert len(tmpdir.listdir()) == 1
+
+
+def test_create_output_directory_failing(tmpdir):
+    p = tmpdir.mkdir("sub").join("hello.txt")
+    p.write("content")
+    assert p.read() == "content"
+    assert len(tmpdir.listdir()) == 1
+    with pytest.raises(AssertionError):
+        assert 0
