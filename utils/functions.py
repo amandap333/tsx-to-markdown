@@ -15,6 +15,7 @@ from pathlib import Path
 
 
 def get_files(path, file_type):
+    print(glob.glob(f'{path}/**/*.{file_type}', recursive=True))
     return glob.glob(f'{path}/**/*.{file_type}', recursive=True)
 
 
