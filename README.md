@@ -26,22 +26,21 @@ TSXTOMARKDOWN
 - coverage run -m pytest utils/functions_test.py
 - coverage report
 
-
-#### functions tested
-
-    get_optional_props,
-    get_required_props,
-    __format_props,
-    __get_file_name,
-    get_props_dict,
-    get_props_list,
-    get_props,
-    get_props_match,
-    __format_optional_props,
-    __format_required_props,
-    __create_prop_dictionary
+## functions still to test
 
 
-### still need to test
-    get_files,
-    read_tsx_file,
+## functions tested
+get_optional_props,
+get_required_props,
+__format_props,
+__get_file_name,
+__get_props,
+get_files,
+get_props_dict,
+get_props_list,
+get_props_match,
+read_tsx_file,
+__format_optional_props,
+create_output_directory,
+__format_required_props,
+__create_prop_dictionary
