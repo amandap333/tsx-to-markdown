@@ -15,7 +15,6 @@ from pathlib import Path
 
 
 def get_files(path, file_type):
-    print(glob.glob(f'{path}/**/*.{file_type}', recursive=True))
     return glob.glob(f'{path}/**/*.{file_type}', recursive=True)
 
 
@@ -30,7 +29,6 @@ def get_props_match(tsx_file_content):
     if m is None:
         return None
 
-    print(m.group(0))
     return m.group(0)
 
 
@@ -118,7 +116,7 @@ def __get_file_name(file):
 def create_output_directory():
     if isdir('./output'):
         rmtree('./output')
-        print('Deleted exsisting directory')
+        print('Deleted existing directory')
 
     mkdir('./output')
     print('created output directory')

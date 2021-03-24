@@ -27,6 +27,8 @@ TSXTOMARKDOWN
 - coverage report
 
 ## functions still to test
+create_readme
+
 
 
 ## functions tested
