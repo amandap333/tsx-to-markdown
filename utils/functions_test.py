@@ -248,12 +248,12 @@ def test__get_props_failing():
         assert expected == __get_props(input)
 
 
-# def test_get_props_match_passing():
-#     expected = 'type FormQuantityFieldProps = { defaultQuantity?: number, setValue: VoidValueCallback<number>, visible?: boolean,[other:string]: unknown}'
+def test_get_props_match_passing():
+    expected = 'type ArrowProps = { active: boolean, className?: string }'
 
-#     actual = get_props_match('const FormQuantityField: FC<FormQuantityFieldProps> = ({ defaultQuantity=1,setValue, visible=true, ...other }: FormQuantityFieldProps) => { const inputRef = useRef<HTMLInputElement>(null) const [quantity, setQuantity] = useState<number>(defaultQuantity) const formattedDecrease: string = formatClassList(MINUS) const formattedMinusIcon: string = formatClassList(MINUS_ICON) const formattedIncrease: string = formatClassList(PLUS)const formattedPlusIcon: string = formatClassList(PLUS_ICON) const formattedQuantity: string = formatClassList(QUANTITY) useEffect(() => { if (!validateQuantity(quantity)) { setQuantity(1)} }, [quantity])')
+    actual = get_props_match("import React, { FC } from 'react' import { formatClassList, joinStrings } from '@bscs-dev-team/bscs-design-system-common' import './arrow.css' type ArrowProps = { active: boolean, className?: string } const ACTIVE_ARROW: string = ` active arrow ` const ARROW: string = ` arrow ` const TEXT_LEFT: string = ` text-left ` const Arrow: FC<ArrowProps> = ({ active=false, className }: ArrowProps) => { const formattedActiveArrow: string = formatClassList(ACTIVE_ARROW) const formattedArrow: string = formatClassList(ARROW) const formattedTextLeft: string = formatClassList(TEXT_LEFT) return ( <i className={ className && active ? joinStrings(' ', className, formattedTextLeft,formattedActiveArrow) : className ? joinStrings(' ', className, formattedTextLeft, formattedArrow) : formattedActiveArrow } /> ) } export default Arrow")
 
-#     assert expected == actual
+    assert expected == actual
 
 
 def test_get_props_match_failing():
@@ -300,7 +300,7 @@ def test_read_tsx_file_passing():
     read_tsx_file(input) == expected
 
 
-def get_files_passing():
+def test_get_files_passing():
 
     input = './input'
     input_two = 'tsx'

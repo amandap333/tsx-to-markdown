@@ -30,6 +30,7 @@ def get_props_match(tsx_file_content):
     if m is None:
         return None
 
+    print(m.group(0))
     return m.group(0)
 
 
